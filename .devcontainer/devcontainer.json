@@ -4,7 +4,7 @@
     "name": "PHP",
     // Utilisez le Dockerfile pour construire l'image
     "build": {
-        "dockerfile": "Dockerfile"
+        // "dockerfile": "Dockerfile"
     },
 
 
