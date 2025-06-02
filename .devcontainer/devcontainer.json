@@ -4,13 +4,18 @@
     "name": "PHP",
     // Utilisez le Dockerfile pour construire l'image
     "build": {
-        // "dockerfile": "Dockerfile"
+    	"dockerfile": "Dockerfile"
     },
 
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
-
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+		"version": "latest"
+		}
+	},
+	
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
