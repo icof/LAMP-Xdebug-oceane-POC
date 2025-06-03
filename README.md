@@ -63,11 +63,11 @@ Ce dépôt est configuré pour fonctionner avec les Codespaces de GitHub et les 
       ./database/scripts/reloadBDD.sh 
       ```
 
-> ℹ️ **Infos techniques : Problemes de droits**
+> ℹ️ **Infos techniques : Problèmes de droits**
 > si les scripts ne s'executent pas, c'est qu'il faut mettre à jour les droits dans le dépot :
->       ```bash sudo chmod 777 *.sh
-> sudo chmod -R 777 database/scripts/
->       ```
+>       ``` sudo chmod 777 *.sh ```
+>       ``` sudo chmod -R 777 database/scripts/> ```
+
 
 ## Utilisation de XDebug
 
