@@ -1,6 +1,4 @@
-# projet dans un Codespace PHP avec mariadb
-
-Début d'application back-office de gestion des données de la Compagnie Océane (TP SIO1 SLAM semestre 2) 
+# Début d'application back-office de gestion des données de la Compagnie Océane (TP SIO1 SLAM semestre 2) 
 
 ## Environnement technique
 
