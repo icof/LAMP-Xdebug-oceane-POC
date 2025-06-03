@@ -1,11 +1,10 @@
 # projet dans un Codespace PHP avec mariadb
 
-blablablba projet
+Début d'application back-office de gestion des données de la Compagnie Océane (TP SIO1 SLAM semestre 2) 
 
-TODO :
-- finir le readme ^^
-- améliorer la structure
-- travailler la persistance bdd (historique des scripts ? detection quand on a un nouveau script ?)
+## Environnement technique
+
+Ce dépot est configuré pour être ouvert dans un Codespace construit depuis une image spécifique Debian-LAMP-PHP. Le Dockerfile complexe installe les dépendances, outils et services nécessaires au TP et des scripts Bash pour organiser le démarrage des services et les interactions avec la BDD.
 
 ## Arborescence du dépôt
 
@@ -15,7 +14,7 @@ Voici l'arborescence du dépôt et le rôle des différents composants. Les fich
 |  ├── devcontainer.json # Configuration du Dev Container pour VS Code
 |  └── Dockerfile # Dockerfile pour construire l'image du Dev Container  dans mariadb 
 ├── .github/ # config pour les alertes de dépendances (sécurité)
-├── .vscode/ # config pour XDebug et parametres de vscode
+├── .vscode/ # config pour XDebug et paramètres de vscode
 ├── database # scripts pour la BDD
 |  ├── scripts # contient 3 scripts bash : 1 pour initialiser la BDD métier (avec ses utilisateurs système), 1 pour sauver la bdd métier du codespace et 1 pour la recharger à partir du .sql présent dans le dépot
 |  └── sources-sql # fichiers SQL pour contruire la BDD métier, ses utilisateurs et ses données 
@@ -23,18 +22,9 @@ Voici l'arborescence du dépôt et le rôle des différents composants. Les fich
 ├── start.sh # Script de lancement pour démarrer le service mariadb et les instances web du site et de phpMyAdmin.
 └── stop.sh # Script pour arreter le service mariadb et les instances web du site et de phpMyAdmin.
 
+## Configuration, lancement de l'application et persistance des données
 
-## Configuration du Codespace et lancement de l'application
-
-Ce dépôt est configuré pour fonctionner avec les Codespaces de GitHub et les Dev Containers de Visual Studio Code. Suivez les étapes ci-dessous pour configurer votre environnement de développement.
-
-
-### Utilisation avec GitHub Codespaces
-1. **Créez un codespace pour ouvrir ce dépot** :
-   - Cliquez sur le bouton "Code" dans GitHub et sélectionnez "Open with Codespaces".
-   - Si vous n'avez pas encore de Codespace, cliquez sur "New Codespace".
-
-   Le Codespace ainsi créé contient toutes les configurations nécessaires pour démarrer le développement.
+Ce dépôt est configuré pour fonctionner avec les Codespaces de GitHub et les Dev Containers de Visual Studio Code. Suivez les étapes ci-dessous pour lancer les services.
 
 ### Serveur php et service mariadb (avec la base métier)
 
@@ -87,6 +77,4 @@ Ce Codespace contient XDebug pour le débogage PHP.
    - Une fois le point d'arrêt atteint, essayez de survoler les variables, d'examiner les variables locales, etc.
 
 [Tuto Grafikart : Xdebug, l'exécution pas à pas ](https://grafikart.fr/tutoriels/xdebug-breakpoint-834)
-
-
 
