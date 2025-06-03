@@ -1,4 +1,5 @@
-# Début d'application back-office de gestion des données de la Compagnie Océane (TP SIO1 SLAM semestre 2) 
+# POC back-office de la Compagnie Océane
+(TP PHP SIO1 SLAM semestre 2) 
 
 ## Environnement technique
 
