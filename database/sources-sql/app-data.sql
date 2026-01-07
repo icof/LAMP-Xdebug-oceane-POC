@@ -1,4 +1,4 @@
-USE oceane;
+USE app_database;
 -- MariaDB dump 10.19  Distrib 10.11.6-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: oceane
