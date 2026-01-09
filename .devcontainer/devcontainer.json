@@ -1,27 +1,31 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/php
+// Pour le format complet : https://aka.ms/devcontainer.json
+// Options détaillées : https://github.com/devcontainers/templates/tree/main/src/php
 {
 	"name": "PHP",
-	// Utilisez le Dockerfile pour construire l'image
+	// Construit l'image de dev à partir du Dockerfile situé à la racine du dépôt
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": ".."
 	},
 
-
-	// Liste des fonctionnalités à ajouter au conteneur de développement. // Plus d'informations : https://containers.dev/features.
-	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"version": "18"
-		}
-	},
-
-	// Liste des personnalisations du conteneur. 
+	// Personnalisations côté éditeur dans le conteneur
 	"customizations": {
-		// Paramètres spécifiques à VS Code.
+		// Paramètres spécifiques à VS Code
 		"vscode": {
-			"settings": {},
-			"extensions": [ // Liste des extensions à installer	
+			"settings": {
+				// Éditeur : retour à la ligne automatique pour éviter le scroll horizontal
+				"editor.wordWrap": "on",
+				"editor.formatOnSave": true,
+				"editor.tabSize": 4,
+				"editor.insertSpaces": false,
+				// PHP : formateur par défaut
+				"[php]": {
+					"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+				},
+				// Git : récupération automatique des mises à jour
+				"git.autofetch": true
+			},
+			"extensions": [ // Extensions VS Code installées automatiquement	
 				"kisstkondoros.vscode-codemetrics",
 				"ms-azuretools.vscode-docker",
 				"bmewburn.vscode-intelephense-client",
@@ -35,17 +39,10 @@
 		}
 	},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [8000],
-
-	// Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
+	// Définition des ports exposés avec leurs libellés (réf. : https://code.visualstudio.com/docs/remote/devcontainerjson-reference)
 	"portsAttributes": {
 		"8000": {
 			"label": "site web",
-			"onAutoForward": "notify"
-		},
-		"8001": {
-			"label": "documentation",
 			"onAutoForward": "notify"
 		},
 		"8080": {
@@ -54,16 +51,16 @@
 		}
 	},
 
-	// Variables d'environnement pour le conteneur
+	// Variables d'environnement injectées dans le conteneur
 	"containerEnv": {
 		"MYSQL_ADMIN_USER": "admin",
 		"MYSQL_ADMIN_PASSWORD": "admin_password",
 		"DATABASE_NAME": "app_database"
 	},
 
-	// Commande à exécuter après la création du conteneur
-   "postCreateCommand": "chmod +x .devcontainer/setup-lamp.sh && .devcontainer/setup-lamp.sh" // lance l'initialisation complète de l'environnement LAMP
+	// Commande exécutée à la fin de la création du conteneur
+   "postCreateCommand": "chmod +x .devcontainer/setup-lamp.sh && .devcontainer/setup-lamp.sh" // initialise toute la stack LAMP
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// Décommenter pour se connecter en root dans le conteneur (réf. : https://aka.ms/dev-containers-non-root)
 	// "remoteUser": "root"
 }
