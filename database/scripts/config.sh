@@ -4,7 +4,7 @@
 # Il est utilisé par les scripts initBDD.sh, saveBDD.sh et reloadBDD.sh
 
 # Nom de la base métier
-WEBAPP_DB_NAME="oceane_db"
+WEBAPP_DB_NAME="oceane"
 
 # Utilisateur applicatif et son mot de passe 
 WEBAPP_USER="oceane-web"

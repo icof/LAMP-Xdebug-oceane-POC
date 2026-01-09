@@ -1,4 +1,4 @@
-USE oceane_db;
+USE oceane;
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19-11.8.3-MariaDB, for debian-linux-gnu (x86_64)
 --
