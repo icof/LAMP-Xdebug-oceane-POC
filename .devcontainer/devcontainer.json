@@ -54,8 +54,7 @@
 	// Variables d'environnement injectées dans le conteneur
 	"containerEnv": {
 		"MYSQL_ADMIN_USER": "admin",
-		"MYSQL_ADMIN_PASSWORD": "admin_password",
-		"DATABASE_NAME": "app_database"
+		"MYSQL_ADMIN_PASSWORD": "admin_password"
 	},
 
 	// Commande exécutée à la fin de la création du conteneur

@@ -1,20 +1,24 @@
 #!/bin/bash
-echo "Exécution du script reloadDBB.sh..."
+echo "Exécution du script reloadBDD.sh..."
 
-# Variables de configuration
-BACKUP_DIR="database/sources-sql" # Chemin vers le répertoire contenant les fichiers de sauvegarde
-BACKUP_FILE="$BACKUP_DIR/app-data.sql" # Nom du fichier de sauvegarde à restaurer
+# Charger la configuration locale (valeurs par défaut) et permettre la surcharge par variables d'environnement
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
 
-# Vérifier si les variables d'environnement sont bien définies dans devcontainer.json
-if [ -z "$MYSQL_ADMIN_USER" ] || [ -z "$MYSQL_ADMIN_PASSWORD" ] || [ -z "$DATABASE_NAME" ]; then
-  echo "Les variables d'environnement MYSQL_ADMIN_USER, MYSQL_ADMIN_PASSWORD et DATABASE_NAME doivent être définies dans devcontainer.json."
+# Résolution des paramètres (nom de BDD issu uniquement de config.sh)
+DB_NAME="$DB_NAME_DEFAULT"
+DB_USER="${MYSQL_ADMIN_USER:-$MYSQL_ADMIN_USER_DEFAULT}"
+DB_PASSWORD="${MYSQL_ADMIN_PASSWORD:-$MYSQL_ADMIN_PASSWORD_DEFAULT}"
+
+# Vérifier si les paramètres nécessaires sont présents
+if [ -z "$DB_USER" ] || [ -z "$DB_PASSWORD" ] || [ -z "$DB_NAME" ]; then
+  echo "Les paramètres DB_USER, DB_PASSWORD et DB_NAME doivent être renseignés (via variables d'env ou config.sh)."
   exit 1
 fi
 
-# Variables de configuration utilisant les variables d'environnement
-DB_USER="$MYSQL_ADMIN_USER" # Nom d'utilisateur de la base de données
-DB_PASSWORD="$MYSQL_ADMIN_PASSWORD" # Mot de passe de l'utilisateur de la base de données
-DB_NAME="$DATABASE_NAME" # Nom de la base de données
+# Variables de configuration
+BACKUP_DIR="database/sources-sql" # Chemin vers le répertoire contenant les fichiers de sauvegarde
+BACKUP_FILE="$BACKUP_DIR/${DB_NAME}.sql" # Fichier de sauvegarde à restaurer
 
 # Vérifier si le fichier de sauvegarde existe
 if [ ! -f "$BACKUP_FILE" ]; then

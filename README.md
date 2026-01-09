@@ -41,7 +41,7 @@ Ce dépôt est configuré pour fonctionner avec les Codespaces de GitHub et les 
    - En mode commande depuis le client mysql en ligne de commande
    Exemple : 
       ```bash
-      mysql -u mediateq-web -p
+      mysql -u $MYSQL_ADMIN_USER -p$MYSQL_ADMIN_PASSWORD
       ```
    - En client graphique avec l'extension Database dans le codespace (Host:127.0.0.1)
 

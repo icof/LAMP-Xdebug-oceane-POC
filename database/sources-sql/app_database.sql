@@ -1,9 +1,10 @@
 USE app_database;
--- MariaDB dump 10.19  Distrib 10.11.6-MariaDB, for debian-linux-gnu (x86_64)
+/*M!999999\- enable the sandbox mode */ 
+-- MariaDB dump 10.19-11.8.3-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: oceane
+-- Host: localhost    Database: app_database
 -- ------------------------------------------------------
--- Server version	10.11.6-MariaDB-0+deb12u1
+-- Server version	11.8.3-MariaDB-0+deb13u1 from Debian
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,7 +15,7 @@ USE app_database;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*M!100616 SET @OLD_NOTE_VERBOSITY=@@NOTE_VERBOSITY, NOTE_VERBOSITY=0 */;
 
 --
 -- Table structure for table `bateau`
@@ -22,7 +23,7 @@ USE app_database;
 
 DROP TABLE IF EXISTS `bateau`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bateau` (
   `id` tinyint(3) unsigned NOT NULL,
   `nom` varchar(100) NOT NULL,
@@ -44,6 +45,7 @@ CREATE TABLE `bateau` (
 
 LOCK TABLES `bateau` WRITE;
 /*!40000 ALTER TABLE `bateau` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `bateau` VALUES
 (6,'Vindilis','vindilis.jpg','Le roulier (ou transbordeur ou ferry) VINDILIS a été mis en service en 1998. \r\n\r\nC’est sous le nom de Vindilis que fut identifiée pour la première fois sur une carte géographique Belle-Ile-en-Mer, vers l’an mille avant JC. Le bateau mesure 48 mètres de long et 12,50 mètres de large. Il peut transporter jusqu’à 399 passagers et 39 véhicules de tourisme. \r\n\r\nIl effectue la traversée vers Belle-Ile-en-Mer en 50 minutes à une vitesse de 12 nœuds.   ',48,12.5,12.5,3),
 (7,'Bangor','bangor.jpg','Le BANGOR a effectué ses premières traversées commerciales en juin 2006. \r\n\r\nIl mesure 46 mètres de long et 12 mètres de large. Avec une capacité de 450 passagers et 32 véhicules de tourisme, il relie Quiberon à Le Palais (Belle-Ile) en 50 minutes à une vitesse de 12 nœuds. \r\n\r\nL’accès au salon passager est facilité pour les personnes à mobilité réduite grâce à la présence d’un ascenseur. ',46,12,12,3),
@@ -53,6 +55,7 @@ INSERT INTO `bateau` VALUES
 (13,'Ile de Groix','ile-de-groix.jpg','L’ILE DE GROIX est le roulier (ou transbordeur ou ferry) mis en exploitation sur les liaisons vers les îles de Bretagne sud. Il a effectué ses premières traversées commerciales en juillet 2008. \r\n\r\nSistership du Bangor, il déplace ses 46 mètres de long et 12 mètres de large à une vitesse de 12 nœuds. Sa capacité maximum est de 450 passagers et de 32 véhicules de tourisme. Il effectue régulièrement la traversée entre Lorient et l’Ile de Groix en 45 minutes et ponctuellement la traversée entre Quiberon et Le Palais. ',46,12,12,3);
 /*!40000 ALTER TABLE `bateau` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `bateau_secteur`
@@ -60,7 +63,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bateau_secteur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bateau_secteur` (
   `idBateau` tinyint(3) unsigned NOT NULL,
   `idSecteur` tinyint(3) unsigned NOT NULL,
@@ -77,6 +80,7 @@ CREATE TABLE `bateau_secteur` (
 
 LOCK TABLES `bateau_secteur` WRITE;
 /*!40000 ALTER TABLE `bateau_secteur` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `bateau_secteur` VALUES
 (10,2),
 (8,2),
@@ -87,6 +91,7 @@ INSERT INTO `bateau_secteur` VALUES
 (12,3);
 /*!40000 ALTER TABLE `bateau_secteur` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `categorie`
@@ -94,7 +99,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categorie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorie` (
   `idCategorie` varchar(2) NOT NULL,
   `libelleCategorie` varchar(100) NOT NULL,
@@ -108,11 +113,13 @@ CREATE TABLE `categorie` (
 
 LOCK TABLES `categorie` WRITE;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `categorie` VALUES
 ('PA','Passagers'),
 ('VE','Véhicules');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `contenance_bateau`
@@ -120,7 +127,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contenance_bateau`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contenance_bateau` (
   `idBateau` tinyint(3) unsigned NOT NULL,
   `lettreCategorie` varchar(2) NOT NULL,
@@ -138,6 +145,7 @@ CREATE TABLE `contenance_bateau` (
 
 LOCK TABLES `contenance_bateau` WRITE;
 /*!40000 ALTER TABLE `contenance_bateau` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `contenance_bateau` VALUES
 (6,'PA',399),
 (6,'VE',37),
@@ -153,6 +161,7 @@ INSERT INTO `contenance_bateau` VALUES
 (13,'VE',26);
 /*!40000 ALTER TABLE `contenance_bateau` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `detail_reservation`
@@ -160,7 +169,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_reservation` (
   `numReservation` int(10) unsigned NOT NULL,
   `numType` tinyint(3) unsigned NOT NULL,
@@ -179,6 +188,7 @@ CREATE TABLE `detail_reservation` (
 
 LOCK TABLES `detail_reservation` WRITE;
 /*!40000 ALTER TABLE `detail_reservation` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `detail_reservation` VALUES
 (918145,1,'PA',2),
 (918145,2,'PA',1),
@@ -187,6 +197,7 @@ INSERT INTO `detail_reservation` VALUES
 (918145,6,'VE',1);
 /*!40000 ALTER TABLE `detail_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `liaison`
@@ -194,7 +205,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `liaison`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `liaison` (
   `code` tinyint(3) unsigned NOT NULL,
   `codeSecteur` tinyint(3) unsigned NOT NULL,
@@ -217,6 +228,7 @@ CREATE TABLE `liaison` (
 
 LOCK TABLES `liaison` WRITE;
 /*!40000 ALTER TABLE `liaison` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `liaison` VALUES
 (11,1,8.40,'Quiberon','Le Palais'),
 (15,1,8.30,'Le Palais','Quiberon'),
@@ -228,6 +240,7 @@ INSERT INTO `liaison` VALUES
 (32,2,5.30,'Port Argol','Port St Gildas');
 /*!40000 ALTER TABLE `liaison` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `niveau_accessibilite`
@@ -235,7 +248,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `niveau_accessibilite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `niveau_accessibilite` (
   `idNiveau` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(100) NOT NULL,
@@ -250,12 +263,14 @@ CREATE TABLE `niveau_accessibilite` (
 
 LOCK TABLES `niveau_accessibilite` WRITE;
 /*!40000 ALTER TABLE `niveau_accessibilite` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `niveau_accessibilite` VALUES
 (1,'non adapté PMR','Navire qui ne contient pas d\'équipement pour les personnes à mobilité réduite.'),
 (2,'adapté PMR','Navire aménagé pour accueillir les personnes à mobilité réduite.'),
 (3,'adapté PMR + ascenseur','Navire équipé d’un ascenseur aux normes PMR permettant aux personnes à mobilité réduite d’accéder aux salons voyageurs.');
 /*!40000 ALTER TABLE `niveau_accessibilite` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `periode`
@@ -263,7 +278,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `periode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `periode` (
   `idPeriode` varchar(5) NOT NULL,
   `libellePeriode` varchar(200) NOT NULL,
@@ -278,11 +293,13 @@ CREATE TABLE `periode` (
 
 LOCK TABLES `periode` WRITE;
 /*!40000 ALTER TABLE `periode` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `periode` VALUES
 ('HF','Haute fréquentation','Les vendredis, samedis, dimanches et jours fériés du 01/04 au 30/09'),
 ('PN','Période normale','Du 01/10 au 31/03 et du lundi au jeudi du 01/04 au 30/09, hors jours fériés');
 /*!40000 ALTER TABLE `periode` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `port`
@@ -290,7 +307,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `port`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `port` (
   `nom_court` varchar(50) NOT NULL,
   `nom` varchar(100) NOT NULL,
@@ -308,6 +325,7 @@ CREATE TABLE `port` (
 
 LOCK TABLES `port` WRITE;
 /*!40000 ALTER TABLE `port` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `port` VALUES
 ('Le Palais','gare maritime de Le Palais','La gare maritime de Le Palais est ouverte toute l’année de 08h30 à 12h15 et de 14h00 à 18h00.','Quai Bonnelle 56360 Le Palais','le-palais.jpg','https://pv.viewsurf.com/id/848/a/media/c/4416?i=Njk0ODp1bmRlZmluZWQ'),
 ('Lorient','gare maritime de Lorient','La gare maritime de Lorient est ouverte toute l’année du lundi au dimanche 30 minutes avant le premier départ et jusqu’au dernier départ de la journée. <br>\r\nLe dimanche et les jours fériés, les guichets ferment après le dernier départ du matin et rouvrent 30 minutes avant le départ de l’après-midi.\r\n<br>Pour faciliter votre stationnement à proximité de la gare maritime, anticipez votre arrivée à Lorient et utilisez les parkings à proximité.','rue Gilles Gahinet 56100 Lorient','lorient.jpg',''),
@@ -317,6 +335,7 @@ INSERT INTO `port` VALUES
 ('Quiberon','gare maritime de Quiberon','La gare maritime de Quiberon est ouverte toute l’année du lundi au dimanche 30 minutes avant le premier départ et jusqu’au dernier départ de la journée. <br>\r\nPour faciliter les flux de véhicules et de passagers, nous vous invitons à respecter les horaires d’embarquement, mais aussi à utiliser les parkings relais et les navettes dès leur mise en service.','Port Maria,  56170 Quiberon','quiberon.jpg','');
 /*!40000 ALTER TABLE `port` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `reservation`
@@ -324,7 +343,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reservation` (
   `num` int(10) unsigned NOT NULL,
   `nom` varchar(100) NOT NULL,
@@ -344,10 +363,12 @@ CREATE TABLE `reservation` (
 
 LOCK TABLES `reservation` WRITE;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `reservation` VALUES
 (918145,'TIPREZ','15 rue de l\'industrie','19290','PEYRELEVADE',60003);
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `secteur`
@@ -355,7 +376,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `secteur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `secteur` (
   `id` tinyint(3) unsigned NOT NULL,
   `nom` varchar(100) NOT NULL,
@@ -372,12 +393,14 @@ CREATE TABLE `secteur` (
 
 LOCK TABLES `secteur` WRITE;
 /*!40000 ALTER TABLE `secteur` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `secteur` VALUES
 (1,'Belle-Ile-En-Mer','belle-ile.jpg','Faire escale à Belle-Île, c’est accepter de perdre un peu de ses repères continentaux, de renouer avec une autre notion du temps, de sympathiser avec des habitants à l’accueil franc et naturel. C’est aussi, chaque jour, le bonheur d’avoir l’océan comme seul horizon.  <br><br>\r\nLa nature y est, partout, présente : site classé d’intérêt Natura 2 000, Belle-Île regorge de richesses naturelles aussi rares que protégées. Vous en apprécierez toute la beauté en sillonnant, notamment, les 84 km² de sentier côtier. <br><br>\r\nEn 5 jours, vous ferez le tour complet de l’île et apprécierez ses multiples facettes : sauvage ou bucolique, chahutée par des vagues tumultueuses ou bercée par des eaux couleurs Caraïbes, autant mer que campagne.  <br><br>\r\nEt cette richesse se trouve aussi dans l’assiette ! Si les produits de la mer seront souvent conviés à votre table, notamment le célèbre « pouce-pied », le terroir n’est pas en reste : viande des embruns, Agneau du Large, fromages et légumes 100% locaux… Votre escale sera aussi l’occasion de renouer avec les plaisirs de la table. <br><br>\r\nPour votre escale à la journée, favorisez les déplacements doux ! À pied, à vélo, en transport public voire en voiture électrique, vous trouverez forcément votre bonheur !','www.belle-ile.com'),
 (2,'Houat et Hoëdic','houat.jpg','Des bateaux à la coque colorée, des casiers qui s’entassent sur les quais, des maisons aux volets bleus, une lande verdoyante et des falaises granitiques. Houat… else !<br> <br>\r\nCôté authenticité et dépaysement, l’île a de quoi vous servir. <br>\r\nVous allez adorer flâner dans les ruelles de son village, bordées de roses trémières. À l’est, bien abritée, la longue et magnifique plage de Treac’h-er-Goured vous invite au repos et à la baignade. L’eau est certes un peu fraîche, mais elle est aussi si claire…<br> Aventurez-vous aussi vers l’ouest de l’île, plus sauvage et vallonné, et dénichez l’une des jolies criques secrètes qui se cache au creux des falaises. Deux options pour y accéder : à pied par le sentier côtier, ou à vélo, nez au vent. N’oubliez pas de vous munir de votre pique-nique. Et revenez à temps pour assister au retour des pêcheurs dans le port de Saint-Gildas. Un vrai spectacle ! <br>Alors n’attendez plus, réservez votre billet pour une journée d’évasion sur l’île de Houat. <br><hr>\r\nUn peu de farniente à Tahiti Beach, ça vous tente ? Sable blanc, eau turquoise, les plages d’Hoëdic sont dignes de lagons. De quoi vous donner encore plus l’impression de bout du monde. Minuscule caillou, l’île est d’un calme saisissant. Ici pas une voiture qui ne circule, on ne se déplace qu’à pied. <br>\r\nDe toute façon, sur Hoëdic, rien n’est loin et surtout, rien ne presse… non ? <br>\r\nBaladez-vous sur ses sentiers, à travers sa végétation riche en couleurs et odeurs. Un parfum de curry vous titille les narines, c’est celui des immortelles des dunes. Filez jusqu’à la Maison Perdue ou vers la pointe du Vieux-Château, la plus sauvage de l’île. Les rochers couverts de lichen, l’océan… C’est encore plus beau au coucher du soleil ! <br>\r\nDe retour de balade, retrouvez les locaux au café. On en compte quatre dans le village, aussi chaleureux les uns que les autres. C’est ça aussi, le charme de la vie hoëdicaise. <br>\r\nÇa vous tente ? Embarquez dès maintenant pour une escapade au grand air sur l’île d’Hoëdic.','www.baiedequiberon.bzh'),
 (3,'Ile de Groix','groix.jpg','C’est forcément à pied ou à vélo (plus de 40 km d’itinéraires cyclables) que vous vivrez l’aventure Groix, ce caillou paisible de 8 km sur 3 km. <br> \r\nAmateurs de beaux paysages, vous allez vous régaler !  <br><br>\r\nAprès les façades colorées de Port-Tudy et de l’Ecomusée, explorez le Bourg et ses petites rues : levez les yeux vers le clocher de l’église orné d’un thon, symbole de l’épopée thonière de l’île! <br>\r\n Ensuite, la campagne du cœur de l’île et les villages typiques. Les falaises abruptes et les étendues de lande. Le phare de Pen-Men sur le site de la réserve naturelle François Le Bail, paradis ornithologique. Le fameux Trou de l’enfer. \r\n <br>\r\n Pointe sud, le phare de la pointe des Chats qui surplombe un plateau impressionnant de micaschistes, grenats et glaucophanes. Les petits ports.  Sans oublier les plages. <br>\r\n La majestueuse Plage des grands sables, plage convexe où l’eau est turquoise et où vous pourrez profiter des activités nautiques. \r\n <br>La plage des sables rouges, symbole de « l’île aux grenats » qu’est Groix.<br>\r\n Et aussi la quinzaine de plages et petites criques, tout aussi paradisiaques : Locmaria, Poulziorec, Port-Mélite… <br><br>\r\n Les groisillons sont appelés les Greks, du nom des cafetières typiques utilisées dans les maisons. Ils vous accueillent toute l’année. <br>\r\n Qui voit Groix voit sa joie ! ','www.lorientbretagnesudtourisme.fr/');
 /*!40000 ALTER TABLE `secteur` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `tarification`
@@ -385,7 +408,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tarification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tarification` (
   `idCategorie` varchar(2) NOT NULL,
   `idTypeBillet` tinyint(3) unsigned NOT NULL,
@@ -405,6 +428,7 @@ CREATE TABLE `tarification` (
 
 LOCK TABLES `tarification` WRITE;
 /*!40000 ALTER TABLE `tarification` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `tarification` VALUES
 ('PA',1,'HF',18.50),
 ('PA',1,'PN',17.00),
@@ -444,6 +468,7 @@ INSERT INTO `tarification` VALUES
 ('VE',12,'PN',29.00);
 /*!40000 ALTER TABLE `tarification` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `traversee`
@@ -451,7 +476,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `traversee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `traversee` (
   `num` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
@@ -476,6 +501,7 @@ CREATE TABLE `traversee` (
 
 LOCK TABLES `traversee` WRITE;
 /*!40000 ALTER TABLE `traversee` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `traversee` VALUES
 (60000,'2022-09-01','07:45:00',11,6,0,'PN'),
 (60001,'2022-09-01','09:30:00',11,7,0,'PN'),
@@ -976,6 +1002,7 @@ INSERT INTO `traversee` VALUES
 (60496,'2022-09-30','18:45:00',15,6,0,'PN');
 /*!40000 ALTER TABLE `traversee` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 
 --
 -- Table structure for table `type_billet`
@@ -983,7 +1010,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `type_billet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `type_billet` (
   `idCategorie` varchar(2) NOT NULL,
   `idTypeBillet` tinyint(3) unsigned NOT NULL,
@@ -1000,6 +1027,7 @@ CREATE TABLE `type_billet` (
 
 LOCK TABLES `type_billet` WRITE;
 /*!40000 ALTER TABLE `type_billet` DISABLE KEYS */;
+set autocommit=0;
 INSERT INTO `type_billet` VALUES
 ('PA',1,'Adulte'),
 ('VE',1,'Bicyclette '),
@@ -1021,6 +1049,7 @@ INSERT INTO `type_billet` VALUES
 ('VE',12,'Chargement extérieur 2 (Hauteur de véhicule + galerie chargée supérieurs à 2,10 m) ou porte-vélos');
 /*!40000 ALTER TABLE `type_billet` ENABLE KEYS */;
 UNLOCK TABLES;
+commit;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1029,6 +1058,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2025-01-07 20:36:37
+-- Dump completed on 2026-01-09 16:44:12
