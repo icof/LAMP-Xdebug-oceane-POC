@@ -7,7 +7,7 @@
 <?php
 	$SQL = "SELECT * FROM secteur";
 	$stmt = $connexion->prepare($SQL);
-	$stmt->execute(array()); // on passe dans le tableaux les paramètres si il y en a à fournir (aucun ici)
+	$stmt->execute();
 	$lesDestinations = $stmt->fetchAll();
 ?>
 
